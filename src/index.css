@@ -1,0 +1,294 @@
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700;800;900&family=Outfit:wght@300;400;500;600;700;800;900&display=swap');
+
+/* ============================================ */
+/* Design System — Glass Window Portfolio       */
+/* ============================================ */
+
+:root {
+  /* Background Palette */
+  --bg-primary: #06060e;
+  --bg-secondary: #0c0c18;
+  --bg-tertiary: #141428;
+  --bg-elevated: #1a1a30;
+
+  /* Glass Effects */
+  --glass-bg: rgba(14, 14, 28, 0.65);
+  --glass-bg-hover: rgba(18, 18, 36, 0.75);
+  --glass-border: rgba(139, 92, 246, 0.15);
+  --glass-border-hover: rgba(139, 92, 246, 0.35);
+  --glass-blur: 24px;
+  --glass-shadow: 0 8px 32px rgba(0, 0, 0, 0.5), 0 0 80px rgba(139, 92, 246, 0.06);
+  --glass-shadow-hover: 0 16px 48px rgba(0, 0, 0, 0.6), 0 0 100px rgba(139, 92, 246, 0.12);
+
+  /* Neon Colors */
+  --neon-purple: #8B5CF6;
+  --neon-purple-dim: #7C3AED;
+  --neon-cyan: #06B6D4;
+  --neon-magenta: #EC4899;
+  --neon-pink: #F472B6;
+  --neon-orange: #F97316;
+  --neon-green: #10B981;
+  --neon-blue: #3B82F6;
+  --neon-yellow: #FBBF24;
+  --neon-red: #EF4444;
+
+  /* Text */
+  --text-primary: #E2E8F0;
+  --text-secondary: #A0AEC0;
+  --text-muted: #5A6070;
+  --text-accent: #B4BEFE;
+
+  /* Syntax highlighting (Catppuccin-inspired) */
+  --syntax-keyword: #CBA6F7;
+  --syntax-string: #A6E3A1;
+  --syntax-number: #FAB387;
+  --syntax-function: #89B4FA;
+  --syntax-comment: #585B70;
+  --syntax-operator: #89DCEB;
+  --syntax-type: #F9E2AF;
+  --syntax-variable: #F5C2E7;
+  --syntax-tag: #F38BA8;
+  --syntax-attr: #FAB387;
+  --syntax-property: #89DCEB;
+
+  /* Glow effects */
+  --glow-purple: 0 0 20px rgba(139, 92, 246, 0.35), 0 0 60px rgba(139, 92, 246, 0.15);
+  --glow-cyan: 0 0 20px rgba(6, 182, 212, 0.35), 0 0 60px rgba(6, 182, 212, 0.15);
+  --glow-magenta: 0 0 20px rgba(236, 72, 153, 0.35), 0 0 60px rgba(236, 72, 153, 0.15);
+
+  /* Typography */
+  --font-mono: 'JetBrains Mono', 'Fira Code', 'Cascadia Code', monospace;
+  --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-display: 'Outfit', 'Inter', sans-serif;
+
+  /* Spacing */
+  --space-xs: 0.25rem;
+  --space-sm: 0.5rem;
+  --space-md: 1rem;
+  --space-lg: 1.5rem;
+  --space-xl: 2rem;
+  --space-2xl: 3rem;
+  --space-3xl: 4rem;
+
+  /* Border radius */
+  --radius-sm: 4px;
+  --radius-md: 10px;
+  --radius-lg: 16px;
+  --radius-xl: 20px;
+
+  /* Z-index layers */
+  --z-bg: 0;
+  --z-particles: 1;
+  --z-windows: 10;
+  --z-ui: 50;
+  --z-overlay: 100;
+
+  /* Transitions */
+  --transition-fast: 150ms ease;
+  --transition-base: 300ms ease;
+  --transition-slow: 600ms cubic-bezier(0.16, 1, 0.3, 1);
+  --transition-spring: 500ms cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+/* Reset & Base */
+*, *::before, *::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 16px;
+  scroll-behavior: auto;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  font-family: var(--font-sans);
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  overflow-x: hidden;
+  line-height: 1.6;
+  min-height: 100vh;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(139, 92, 246, 0.2);
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(139, 92, 246, 0.5);
+}
+
+/* Selection */
+::selection {
+  background: rgba(139, 92, 246, 0.3);
+  color: var(--text-primary);
+}
+
+/* Links base reset */
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* ============================================ */
+/* Keyframe Animations                          */
+/* ============================================ */
+
+@keyframes popIn {
+  0% {
+    opacity: 0;
+    transform: scale(1.08) translateY(40px);
+    filter: blur(10px);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+    filter: blur(0);
+  }
+}
+
+@keyframes popOut {
+  0% {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+    filter: blur(0);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(0.88) translateY(-50px);
+    filter: blur(8px);
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes blink {
+  0%, 50% { opacity: 1; }
+  51%, 100% { opacity: 0; }
+}
+
+@keyframes typing {
+  from { width: 0; }
+  to { width: 100%; }
+}
+
+@keyframes glassShimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-8px); }
+}
+
+@keyframes pulseGlow {
+  0%, 100% {
+    box-shadow: 0 0 20px rgba(139, 92, 246, 0.1);
+  }
+  50% {
+    box-shadow: 0 0 40px rgba(139, 92, 246, 0.25);
+  }
+}
+
+@keyframes borderGlow {
+  0%, 100% {
+    border-color: rgba(139, 92, 246, 0.15);
+  }
+  50% {
+    border-color: rgba(139, 92, 246, 0.3);
+  }
+}
+
+@keyframes dotPulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.2); }
+}
+
+@keyframes scrollCue {
+  0% { opacity: 0.4; transform: translateY(0); }
+  50% { opacity: 1; transform: translateY(8px); }
+  100% { opacity: 0.4; transform: translateY(0); }
+}
+
+@keyframes particleDrift {
+  0% { transform: translateY(0) translateX(0); opacity: 0; }
+  10% { opacity: 1; }
+  90% { opacity: 1; }
+  100% { transform: translateY(-100vh) translateX(50px); opacity: 0; }
+}
+
+@keyframes gradientMove {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* ============================================ */
+/* Utility Classes                               */
+/* ============================================ */
+
+.mono { font-family: var(--font-mono); }
+.sans { font-family: var(--font-sans); }
+.display { font-family: var(--font-display); }
+
+.neon-text-purple {
+  color: var(--neon-purple);
+  text-shadow: 0 0 7px var(--neon-purple), 0 0 20px rgba(139, 92, 246, 0.4);
+}
+
+.neon-text-cyan {
+  color: var(--neon-cyan);
+  text-shadow: 0 0 7px var(--neon-cyan), 0 0 20px rgba(6, 182, 212, 0.4);
+}
+
+.gradient-text {
+  background: linear-gradient(135deg, var(--neon-purple), var(--neon-cyan), var(--neon-magenta));
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: gradientMove 4s ease infinite;
+}
