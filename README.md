@@ -1,6 +1,6 @@
 # Kartikey Singh — Portfolio Website
 
-A dynamic, VS Code-inspired portfolio website for Kartikey Singh, an AI/ML Engineer & Full-Stack Developer. The site features a 2D glassmorphism UI, a file explorer navigation system, smooth scroll-triggered section transitions, and a 3D rotating carousel for certifications.
+A dynamic, VS Code-inspired portfolio website for Kartikey Singh, an AI/ML Engineer & Back-end Developer. The site features a 2D glassmorphism UI, a file explorer navigation system, smooth scroll-triggered section transitions, and a 3D rotating carousel for certifications.
 
 ## Features
 
