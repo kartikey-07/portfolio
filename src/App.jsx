@@ -13,6 +13,7 @@ import SmartScrapSection from './components/SmartScrapSection';
 import CertsSection from './components/CertsSection';
 import PublicationsSection from './components/PublicationsSection';
 import ContactSection from './components/ContactSection';
+import TopNavbar from './components/TopNavbar';
 
 /**
  * App — Root component
@@ -58,6 +59,9 @@ export default function App() {
 
   return (
     <div className="app">
+      {/* Top Navbar */}
+      <TopNavbar activeIndex={activeIndex} onNavigate={navigateToSection} />
+
       {/* Animated Background */}
       <div className="bg-layer">
         <div className="bg-mesh" />
