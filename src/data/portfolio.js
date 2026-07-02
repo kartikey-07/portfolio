@@ -14,7 +14,7 @@ applications, REST APIs, and database-driven architectures.
 
 I believe in building technology that fights misinformation, promotes sustainability, 
 and pushes the boundaries of what's possible with AI.`,
-  location: "Lucknow, India",
+  location: "Delhi, India",
   email: "kartikeysingh0719@gmail.com",
   phone: "+91 8920331248",
   github: "https://github.com/kartikey-07",
@@ -25,7 +25,6 @@ and pushes the boundaries of what's possible with AI.`,
 export const education = {
   degree: "Bachelor of Technology — Computer Science Engineering",
   university: "Dr. A.P.J. Abdul Kalam Technical University, Lucknow, UP",
-  cgpa: "7.0",
   period: "August 2022 — May 2026",
 };
 
@@ -134,15 +133,6 @@ export const certifications = [
     url: "https://github.com/kartikey-07/Certifications/blob/main/AI_ML_Program_ICTRD.pdf",
   },
   {
-    name: "Project-Based ML Learning",
-    org: "IBM",
-    category: "Machine Learning",
-    date: "Jul–Aug 2025",
-    color: "#3B82F6",
-    file: "Project_Based_ML_IBM.pdf",
-    url: "https://github.com/kartikey-07/Certifications/blob/main/Project_Based_ML_IBM.pdf",
-  },
-  {
     name: "GenAI Virtual Internship",
     org: "IBM",
     category: "Generative AI",
@@ -150,15 +140,6 @@ export const certifications = [
     color: "#06B6D4",
     file: "GenAI_Virtual_Internship_IBM.pdf",
     url: "https://github.com/kartikey-07/Certifications/blob/main/GenAI_Virtual_Internship_IBM.pdf",
-  },
-  {
-    name: "Virtual Internship",
-    org: "IBM",
-    category: "Industry Experience",
-    date: "Aug 2025",
-    color: "#1D4ED8",
-    file: "Virtual_Internship_IBM.pdf",
-    url: "https://github.com/kartikey-07/Certifications/blob/main/Virtual_Internship_IBM.pdf",
   },
   {
     name: "Data Science & ML Comprehensive",
