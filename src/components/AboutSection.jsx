@@ -71,13 +71,6 @@ export default function AboutSection({ progress = 0 }) {
             </div>
           </div>
           <div className="about-info-item">
-            <span className="info-icon">📊</span>
-            <div>
-              <div className="info-label">CGPA</div>
-              <div className="info-value">{education.cgpa}</div>
-            </div>
-          </div>
-          <div className="about-info-item">
             <span className="info-icon">📍</span>
             <div>
               <div className="info-label">Location</div>
