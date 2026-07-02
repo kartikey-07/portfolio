@@ -3,6 +3,7 @@ import './App.css';
 import { useScrollSections, SECTIONS } from './hooks/useScrollTimeline';
 import GlassWindow from './components/GlassWindow';
 import ParticleBackground from './components/ParticleBackground';
+import FloatingCodeWindows from './components/FloatingCodeWindows';
 import FileExplorer from './components/FileExplorer';
 import HeroSection from './components/HeroSection';
 import AboutSection from './components/AboutSection';
@@ -65,6 +66,9 @@ export default function App() {
 
       {/* Floating Particles */}
       <ParticleBackground count={25} />
+
+      {/* Floating Code Windows — Live Wallpaper (hero only) */}
+      <FloatingCodeWindows visible={activeIndex === 0} />
 
       {/* Scroll Progress Bar */}
       <div className="scroll-progress">

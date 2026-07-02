@@ -4,6 +4,7 @@ A dynamic, VS Code-inspired portfolio website for Kartikey Singh, an AI/ML Engin
 
 ## Features
 
+- **Google AI-Style Animations**: A dynamic intro with a spring-based "pop-in" effect and a live wallpaper featuring floating, blurred code editor windows.
 - **VS Code Inspired UI**: A sidebar file explorer that allows navigation between different sections represented as files (`intro.py`, `about.md`, `satyax.py`, etc.).
 - **Glassmorphism Design**: Frosted glass windows for each section with interactive glow effects.
 - **Scroll Animations**: Smooth, scroll-driven window transitions using GSAP ScrollTrigger.

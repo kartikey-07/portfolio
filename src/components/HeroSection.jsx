@@ -2,19 +2,26 @@ import React, { useState, useEffect, useRef } from 'react';
 import { personalInfo } from '../data/portfolio';
 
 /**
- * HeroSection — Intro window with name, title, tagline, and links
- * Content animates in automatically with staggered delays (no scroll gating).
- * Typing animation auto-starts after mount.
+ * HeroSection — Google AI-style intro with pop-in animation
+ * The entire hero card pops in with spring scaling + blur reveal.
+ * Sub-elements stagger in sequentially. Typing animation auto-starts.
  */
 export default function HeroSection({ progress = 0 }) {
   const [typedText, setTypedText] = useState('');
   const [startTyping, setStartTyping] = useState(false);
+  const [hasPopped, setHasPopped] = useState(false);
   const fullText = personalInfo.title;
   const typingRef = useRef(null);
 
-  // Auto-start typing after a short delay
+  // Trigger pop-in after mount
   useEffect(() => {
-    const timer = setTimeout(() => setStartTyping(true), 800);
+    const timer = setTimeout(() => setHasPopped(true), 100);
+    return () => clearTimeout(timer);
+  }, []);
+
+  // Auto-start typing after pop-in completes
+  useEffect(() => {
+    const timer = setTimeout(() => setStartTyping(true), 1200);
     return () => clearTimeout(timer);
   }, []);
 
@@ -31,34 +38,37 @@ export default function HeroSection({ progress = 0 }) {
   }, [startTyping, typedText, fullText]);
 
   return (
-    <div className="hero-content">
+    <div className={`hero-content ${hasPopped ? 'hero-popped' : 'hero-pre-pop'}`}>
+      {/* Shimmer sweep overlay */}
+      <div className="hero-shimmer" />
+
       {/* Greeting comment */}
-      <div className="hero-greeting" style={{ animation: 'fadeInUp 0.6s ease 0.1s both' }}>
+      <div className="hero-greeting hero-pop-child" style={{ '--pop-delay': '0.35s' }}>
         # Hello, World! 👋
       </div>
 
       {/* Name */}
       <h1
-        className="hero-name gradient-text"
-        style={{ animation: 'fadeInUp 0.6s ease 0.25s both' }}
+        className="hero-name gradient-text hero-pop-child"
+        style={{ '--pop-delay': '0.5s' }}
       >
         {personalInfo.name}
       </h1>
 
       {/* Title with typing */}
-      <div className="hero-title-line" style={{ animation: 'fadeInUp 0.6s ease 0.4s both' }}>
+      <div className="hero-title-line hero-pop-child" style={{ '--pop-delay': '0.65s' }}>
         <span className="prompt">&gt;</span>
         <span>{typedText}</span>
         <span className="typing-cursor" />
       </div>
 
       {/* Tagline */}
-      <p className="hero-tagline" style={{ animation: 'fadeInUp 0.6s ease 0.55s both' }}>
+      <p className="hero-tagline hero-pop-child" style={{ '--pop-delay': '0.8s' }}>
         "{personalInfo.tagline}"
       </p>
 
       {/* Links */}
-      <div className="hero-links" style={{ animation: 'fadeInUp 0.6s ease 0.7s both' }}>
+      <div className="hero-links hero-pop-child" style={{ '--pop-delay': '0.95s' }}>
         <a
           href={personalInfo.github}
           target="_blank"
@@ -95,7 +105,7 @@ export default function HeroSection({ progress = 0 }) {
 
       {/* Scroll cue */}
       {progress < 0.6 && (
-        <div className="hero-scroll-cue" style={{ animation: 'fadeIn 1s ease 1.2s both' }}>
+        <div className="hero-scroll-cue hero-pop-child" style={{ '--pop-delay': '1.3s' }}>
           <span>scroll to explore</span>
           <div className="scroll-chevron" />
         </div>
