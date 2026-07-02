@@ -71,8 +71,8 @@ export default function App() {
       {/* Floating Particles */}
       <ParticleBackground count={25} />
 
-      {/* Floating Code Windows — Live Wallpaper (hero only) */}
-      <FloatingCodeWindows visible={activeIndex === 0} />
+      {/* Floating Code Windows — Live Wallpaper */}
+      <FloatingCodeWindows visible={true} />
 
       {/* Scroll Progress Bar */}
       <div className="scroll-progress">

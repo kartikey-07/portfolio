@@ -191,14 +191,14 @@ const CODE_SNIPPETS = [
 
 // Pre-defined window positions for a balanced, aesthetic layout
 const WINDOW_CONFIGS = [
-  { top: '3%', left: '15%', rotate: -8, scale: 0.82, delay: 0, duration: 22, opacity: 0.5 },
-  { top: '5%', right: '4%', rotate: 6, scale: 0.75, delay: 2, duration: 25, opacity: 0.45 },
-  { top: '38%', left: '12%', rotate: -5, scale: 0.7, delay: 4, duration: 20, opacity: 0.4 },
-  { top: '60%', right: '1%', rotate: 10, scale: 0.78, delay: 1, duration: 24, opacity: 0.47 },
-  { top: '72%', left: '18%', rotate: 7, scale: 0.68, delay: 3, duration: 21, opacity: 0.43 },
-  { top: '15%', left: '35%', rotate: -3, scale: 0.6, delay: 5, duration: 26, opacity: 0.33 },
-  { top: '55%', right: '25%', rotate: 4, scale: 0.62, delay: 6, duration: 23, opacity: 0.35 },
-  { top: '82%', right: '30%', rotate: -6, scale: 0.65, delay: 2.5, duration: 19, opacity: 0.37 },
+  { top: '3%', left: '15%', rotate: -8, scale: 0.82, delay: 0, duration: 22, opacity: 0.5, theme: 'mac' },
+  { top: '5%', right: '4%', rotate: 6, scale: 0.75, delay: 2, duration: 25, opacity: 0.45, theme: 'powershell' },
+  { top: '38%', left: '12%', rotate: -5, scale: 0.7, delay: 4, duration: 20, opacity: 0.4, theme: 'cmd' },
+  { top: '60%', right: '1%', rotate: 10, scale: 0.78, delay: 1, duration: 24, opacity: 0.47, theme: 'mac' },
+  { top: '72%', left: '18%', rotate: 7, scale: 0.68, delay: 3, duration: 21, opacity: 0.43, theme: 'powershell' },
+  { top: '15%', left: '35%', rotate: -3, scale: 0.6, delay: 5, duration: 26, opacity: 0.33, theme: 'cmd' },
+  { top: '55%', right: '25%', rotate: 4, scale: 0.62, delay: 6, duration: 23, opacity: 0.35, theme: 'mac' },
+  { top: '82%', right: '30%', rotate: -6, scale: 0.65, delay: 2.5, duration: 19, opacity: 0.37, theme: 'powershell' },
 ];
 
 // Syntax highlighting color map
@@ -226,21 +226,53 @@ function MiniCodeWindow({ snippet, config, index, appeared }) {
     opacity: appeared ? config.opacity : 0,
   };
 
+  const theme = config.theme || 'mac';
+
   return (
     <div
-      className="floating-code-window"
+      className={`floating-code-window theme-${theme}`}
       style={posStyle}
       aria-hidden="true"
     >
       {/* Mini title bar */}
-      <div className="fcw-titlebar">
-        <div className="fcw-dots">
-          <span className="fcw-dot" style={{ background: '#FF5F57' }} />
-          <span className="fcw-dot" style={{ background: '#FEBC2E' }} />
-          <span className="fcw-dot" style={{ background: '#28C840' }} />
-        </div>
-        <span className="fcw-filename">{snippet.filename}</span>
-        <span className="fcw-lang" style={{ color: snippet.color }}>{snippet.language}</span>
+      <div className={`fcw-titlebar ${theme !== 'mac' ? theme + '-titlebar' : ''}`}>
+        {theme === 'mac' && (
+          <>
+            <div className="fcw-dots">
+              <span className="fcw-dot" style={{ background: '#FF5F57' }} />
+              <span className="fcw-dot" style={{ background: '#FEBC2E' }} />
+              <span className="fcw-dot" style={{ background: '#28C840' }} />
+            </div>
+            <span className="fcw-filename">{snippet.filename}</span>
+            <span className="fcw-lang" style={{ color: snippet.color }}>{snippet.language}</span>
+          </>
+        )}
+        {theme === 'cmd' && (
+          <>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
+              <span style={{ fontSize: '10px', fontWeight: 'bold' }}>C:\_</span>
+              <span className="fcw-filename" style={{ color: '#fff', opacity: 0.9, textTransform: 'none' }}>
+                Command Prompt - {snippet.filename}
+              </span>
+            </div>
+            <div className="fcw-win-controls" style={{ display: 'flex', gap: '8px', fontSize: '10px' }}>
+              <span>─</span><span>□</span><span>✕</span>
+            </div>
+          </>
+        )}
+        {theme === 'powershell' && (
+          <>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
+              <span style={{ fontSize: '10px', fontWeight: 'bold', color: '#fff' }}>❯_</span>
+              <span className="fcw-filename" style={{ color: '#fff', opacity: 0.9, textTransform: 'none' }}>
+                Windows PowerShell - {snippet.filename}
+              </span>
+            </div>
+            <div className="fcw-win-controls" style={{ display: 'flex', gap: '8px', fontSize: '10px' }}>
+              <span>─</span><span>□</span><span>✕</span>
+            </div>
+          </>
+        )}
       </div>
 
       {/* Code lines */}
